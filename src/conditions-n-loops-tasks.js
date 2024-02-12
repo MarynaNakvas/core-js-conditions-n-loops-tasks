@@ -490,7 +490,36 @@ function sortByAsc(arr) {
 function shuffleChar(str, iterations) {
   let newStr = str;
 
-  for (let i = 1; i <= iterations; i += 1) {
+  const findNumber = (string, iters) => {
+    let updatedStr = string;
+    let iterNum = 0;
+
+    for (let i = 1; i <= iters; i += 1) {
+      let str1 = '';
+      let str2 = '';
+      for (let j = 0; j < updatedStr.length; j += 1) {
+        if (j % 2 === 0) {
+          str1 += updatedStr[j];
+        } else {
+          str2 += updatedStr[j];
+        }
+      }
+
+      updatedStr = str1 + str2;
+
+      if (i !== 0 && updatedStr === string) {
+        iterNum = iters % i;
+        break;
+      }
+    }
+
+    return iterNum;
+  };
+
+  const number =
+    iterations > str.length ? findNumber(str, iterations) : iterations;
+
+  for (let i = 1; i <= number; i += 1) {
     let str1 = '';
     let str2 = '';
     for (let j = 0; j < newStr.length; j += 1) {
